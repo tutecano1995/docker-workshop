@@ -2,14 +2,14 @@
 
 ## Levantar un Servicio Node
 
-Ahora vamos a usar algunos comandos nuevos para crear un `Dockerfile` para buildear una imagen que permita levantar el servicio que se encuentra en `/resources/node_service`.
+Ahora vamos a usar algunos comandos nuevos para crear un `Dockerfile` para buildear una imagen que permita levantar el servicio que se encuentra en `/resources/03_node_service`.
 
 Comandos nuevos de `Dockerfile`:
 
-`COPY` -- copies files or directories from source and adds them to the filesystem of the container at destination
-`WORKDIR` -- set working directory
-`EXPOSE` -- expose port
-`CMD` -- set executable for container
+- `COPY` -- copies files or directories from source and adds them to the filesystem of the container at destination
+- `WORKDIR` -- set working directory
+- `EXPOSE` -- expose port
+- `CMD` -- set executable for container
 
 Por ejemplo, el siguiente podría ser el formato de un `Dockerfile` muy simple:
 
@@ -49,7 +49,11 @@ Y luego verificar que se pudo buildear correctamente con:
 docker image ls
 ```
 
-3. Levantar un container que `python3.6` usando la imagen buildeada y lo aprendido en el [Hello World].
+3. Levantar un container usando la imagen buildeada y los siguientes flags:
+
+- `-e <ENV_VAR>=<ENV_VAR_VALUE>`: Para definir una variable de entorno, en este caso será necesario para definir el puerto donde correra internamente la aplicación.
+
+- `-p <HOST_PORT>:<CONTAINER_PORT>`: Para publicar un puerto expuesto al host.
 
 #### Notas
 
@@ -58,3 +62,5 @@ docker image ls
 ```
 npm i
 ```
+
+[< Primer Dockerfile](02_first_dockerfile.md) | [ Agregamos una DB>](04_database.md)

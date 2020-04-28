@@ -41,4 +41,4 @@ docker image ls
 
 - El comando necesario para instalar Python lo deberán correr con el flag `-y`.
 
-[< Primer Dockerfile](02_first_dockerfile.md) | [Servicio Node >](03_node_service.md)
+[< Hello World](01_hello_world.md) | [Servicio Node >](03_node_service.md)
