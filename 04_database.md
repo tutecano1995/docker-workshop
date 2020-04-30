@@ -62,7 +62,7 @@ Nota: La URL de la DB debería ser `postgres://<USER>:<PASSWORD>@<HOST>:<PORT>/<
 - `PASSWORD`: `postgres`
 - `HOST`: `psql-container`
 - `PORT`: `5432`
-- `DATABASE`: `POSTGRES`
+- `DATABASE`: `postgres`
 
 3. Verificar que luego que la conexión fue satisfactoria pegándole al endpoint `/status`.
 
