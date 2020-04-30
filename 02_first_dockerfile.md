@@ -2,7 +2,7 @@
 
 ## Nuestro primer Dockerfile
 
-Lo que vimos hasta ahora nos sirve para poder levantar un container usando una imagen determinada imagen, pero si quisieramos hacer nuestra propia imagen deberíamos hacer un `Dockerfile`.
+Lo que vimos hasta ahora nos sirve para poder levantar un container usando una imagen determinada, pero si quisieramos hacer nuestra propia imagen deberíamos hacer un `Dockerfile`.
 
 Algunos comandos de `Dockerfile`:
 

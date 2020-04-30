@@ -4,7 +4,7 @@
 
 - **Consistencia**: Queremos que nuestro servicio funcione de forma lo más independientemente posible de la infraestructura en donde está corriendo, de forma que se comporte igual en nuestros ambientes de desarrollo, de prueba y productivos.
 
-- **Multi Plataformas Cloud**: Queremos abstraernos no solo de la infraestructura si no tambieén del servicio Cloud donde deployaremos el servicio.
+- **Multi Plataformas Cloud**: Queremos abstraernos no solo de la infraestructura si no también del servicio Cloud donde deployaremos el servicio.
 
 - **Aislamiento**: Queremos poder correr multiples programas en un mismo host, manteniendo los recursos de cada uno aislados entre sí y del host.
 
