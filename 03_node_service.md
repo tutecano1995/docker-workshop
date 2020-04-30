@@ -57,7 +57,7 @@ docker image ls
 
 #### Notas
 
-- Para instalar las dependencias especificadas en el [`pacakge.json`](/resources/node_service/package.json) se debe correr:
+- Para instalar las dependencias especificadas en el [`package.json`](/resources/node_service/package.json) se debe correr:
 
 ```
 npm i
