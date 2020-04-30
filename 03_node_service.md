@@ -35,7 +35,7 @@ CMD <COMANDO PARA INICIAR PROGRAMA>
 
 - Imagen Base: `node:12` de https://hub.docker.com/_/node
 - Working Directory: `/app`
-- Exponga el puerto `8022` donde corre la aplicación.
+- Exponga el puerto definido en la variable de entorno `PORT` donde corre la aplicación.
 
 2. Buildear la imagen con:
 

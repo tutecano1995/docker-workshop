@@ -3,17 +3,10 @@ const { Client } = require('pg');
 
 const app = express();
 
-// const client = new Client({
-//   user: 'postgres',
-//   host: 'psql-container',
-//   database: 'postgres',
-//   password: 'postgres'
-// });
-
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
-  query_timeout: 10000,
-  statement_timeout: 10000
+  query_timeout: 1000,
+  statement_timeout: 1000
 });
 
 client.connect();
