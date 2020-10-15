@@ -157,7 +157,7 @@ RUN apt install -y postgresql
 ```
 - Reemplazar el comando `npm start` por el siguiente en el `Dockerfile`:
 ```
-CMD sh wait-for-postgres.sh $DABASE_URL npm start
+CMD sh wait-for-postgres.sh $DATABASE_URL npm start
 ```
 
 
