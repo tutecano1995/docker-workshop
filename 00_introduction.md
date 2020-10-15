@@ -1,4 +1,4 @@
-# Introduccion
+# Introducción
 
 ## Motivación
 

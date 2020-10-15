@@ -31,11 +31,13 @@ CMD <COMANDO PARA INICIAR PROGRAMA>
 
 ### Ejercicio 2
 
-1. Crear un Dockerfile que corra el servicio node y cumpla las siguientes condiciones:
+1. Crear un Dockerfile que corra el servicio node (ubicado en `/resources/03_node_service`) y cumpla las siguientes condiciones:
 
 - Imagen Base: `node:12` de https://hub.docker.com/_/node
 - Working Directory: `/app`
 - Exponga el puerto definido en la variable de entorno `PORT` donde corre la aplicación.
+- Instale las dependencias del servicio Node con el comando `npm i`.
+- Inicie el servicio Node con el comando `npm start`.
 
 2. Buildear la imagen con:
 
@@ -54,6 +56,17 @@ docker image ls
 - `-e <ENV_VAR>=<ENV_VAR_VALUE>`: Para definir una variable de entorno, en este caso será necesario para definir el puerto donde correra internamente la aplicación.
 
 - `-p <HOST_PORT>:<CONTAINER_PORT>`: Para publicar un puerto expuesto al host.
+
+
+4. Verificar que el servicio esta levantado y corriendo. Correr el comando: 
+
+```
+curl http://localhost:<HOST_PORT>/ping
+```
+Y luego verificar que la respuesta sea:
+```
+Pong
+```
 
 #### Notas
 

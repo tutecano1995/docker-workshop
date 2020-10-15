@@ -56,13 +56,15 @@ docker network create -d bridge my-network
 --network network                Connect a container to a network
 ```
 
-Nota: La URL de la DB debería ser `postgres://<USER>:<PASSWORD>@<HOST>:<PORT>/<DATABASE>`, donde en este caso:
+Notas:
+- Además de las variables de ambiente que necesitamos en [Node Service](03_node_service.md), también debemos pasarle a nuestro servicio Node la url de la db como `DATABASE_URL`.
+- La URL de la DB debería ser `postgres://<USER>:<PASSWORD>@<HOST>:<PORT>/<DATABASE>`, donde en este caso:
 
-- `USER`: `postgres`
-- `PASSWORD`: `postgres`
-- `HOST`: `psql-container`
-- `PORT`: `5432`
-- `DATABASE`: `postgres`
+  - `USER`: `postgres`
+  - `PASSWORD`: `postgres`
+  - `HOST`: `psql-container`
+  - `PORT`: `5432`
+  - `DATABASE`: `postgres`
 
 3. Verificar que luego que la conexión fue satisfactoria pegándole al endpoint `/status`.
 
@@ -82,7 +84,7 @@ services:
   <SERVICE_1>:
     image: <IMAGE>
     container_name: <CONTAINER_NAME>
-    environments:
+    environment:
       - <ENV_VAR>=<ENV_VALUE>
     networks:
       - <NETWORK>
@@ -90,9 +92,11 @@ services:
   <SERVICE_2>:
     build: <DOCKERFILE_DIR>
     container_name: <CONTAINER_NAME>
+    environment:
+      - <ENV_VAR>=<ENV_VALUE>
     ports:
       - <HOST_PORT>:<CONTAINER_PORT>
-    dependes_on:
+    depends_on:
       - <SERVICE_1>
     networks:
       - <NETWORK>
@@ -112,16 +116,16 @@ networks:
 docker-compose build
 ```
 
-3. Levantar la db con:
+3. Levantar la db con, donde `<SERVICE_1>` es la db postgres:
 
 ```
-docker-compose up -d database
+docker-compose up -d <SERVICE_1>
 ```
 
-Y luego el servicio con:
+Y luego el servicio con, donde `<SERVICE_2>` es el servicio Node:
 
 ```
-docker-compose up -d app
+docker-compose up -d <SERVICE_2>
 ```
 
 4. Verificar que luego que la conexión fue satisfactoria pegándole al endpoint `/status`.
@@ -132,6 +136,29 @@ docker-compose up -d app
 docker-compose up
 ```
 
-6. Si no funciono el paso 5, arreglarlo usando el script `wait-for-postgres.sh`.
+6. Si no funcionó el paso 5, arreglarlo usando el script `wait-for-postgres.sh`. Este script lo que hace es esperar a que la db esté funcionando para ejecutar un comando. Por ejemplo, al hacer:
+
+```
+sh wait-for-postgres.sh postgres://postgres:postgres@psql-container:5432/postgres npm start
+```
+
+Estamos esperando a la conexión con `postgres://postgres:postgres@psql-container:5432/postgres` para ejecutar `npm start`. Es necesario el script ya que el `depends_on` espera a que haya levantado la db pero no a que este disponible para aceptar conexiones. 
+
+Para usar el script debemos:
+
+- Agregar el script en el `Dockerfile`:
+```
+COPY wait-for-postgres.sh .
+```
+-  Instalar `psql` en nuestro `Dockerfile`:
+```
+RUN apt upstate -y
+RUN apt install -y postgresql
+```
+- Reemplazar el comando `npm start` por el siguiente en el `Dockerfile`:
+```
+CMD sh wait-for-postgres.sh $DABASE_URL npm start
+```
+
 
 [< Node Service](03_node_service.md) | [ Deployamos nuestra app a Heroku>](05_heroku.md)
